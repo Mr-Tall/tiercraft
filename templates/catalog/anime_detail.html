@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}{{ anime.title }} — TierCraft{% endblock %}
+
+{% block content %}
+  <a class="btn" href="/">← Back</a>
+
+  <h1 style="margin-top: 16px;">{{ anime.title }}</h1>
+  {% if anime.description %}
+    <p class="muted">{{ anime.description }}</p>
+  {% endif %}
+
+  <h2>Characters</h2>
+  {% if characters %}
+    <div class="grid">
+      {% for c in characters %}
+        <div class="card">
+          <strong>{{ c.name }}</strong>
+          {% if c.tags and c.tags|length %}
+            <div class="muted" style="margin-top: 6px;">Tags: {{ c.tags|join:", " }}</div>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="card">
+      <p>No characters yet. Add some in <a href="/admin/">admin</a>.</p>
+    </div>
+  {% endif %}
+{% endblock %}

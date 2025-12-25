@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}TierCraft — Home{% endblock %}
+
+{% block content %}
+  <h1>Anime</h1>
+  <p class="muted">Browse anime you seeded in the admin.</p>
+
+  {% if anime_list %}
+    <div class="grid">
+      {% for anime in anime_list %}
+        <div class="card">
+          <h3 style="margin: 0 0 6px 0;">
+            <a href="{% url 'catalog:anime_detail' anime.slug %}">{{ anime.title }}</a>
+          </h3>
+          {% if anime.description %}
+            <p class="muted" style="margin: 0;">{{ anime.description|truncatechars:120 }}</p>
+          {% else %}
+            <p class="muted" style="margin: 0;">No description yet.</p>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="card">
+      <p>No anime yet. Add some in <a href="/admin/">admin</a>.</p>
+    </div>
+  {% endif %}
+{% endblock %}

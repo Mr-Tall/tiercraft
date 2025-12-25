@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{% block title %}TierCraft{% endblock %}</title>
+    <style>
+      body { font-family: system-ui, Arial, sans-serif; max-width: 980px; margin: 0 auto; padding: 24px; }
+      a { text-decoration: none; }
+      header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+      .card { border: 1px solid #ddd; border-radius: 10px; padding: 14px; margin: 10px 0; }
+      .muted { color: #666; }
+      .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
+      .btn { display: inline-block; padding: 8px 12px; border: 1px solid #333; border-radius: 8px; }
+      .btn:hover { opacity: 0.8; }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div>
+        <a href="/" class="btn">TierCraft</a>
+      </div>
+      <div>
+        {% if user.is_authenticated %}
+          <span class="muted">Logged in as {{ user.username }}</span>
+          <a class="btn" href="/admin/">Admin</a>
+        {% else %}
+          <a class="btn" href="/admin/">Login</a>
+        {% endif %}
+      </div>
+    </header>
+
+    {% block content %}{% endblock %}
+  </body>
+</html>
